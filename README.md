@@ -1,3 +1,7 @@
+[![Build Status](https://travis-ci.org/OzoNeTT/lab-03-shared-ptr.svg?branch=master)](https://travis-ci.org/OzoNeTT/lab-03-shared-ptr)
+![GitHub Repo size](https://img.shields.io/github/repo-size/OzoNeTT/lab-03-shared-ptr.svg)
+![Some badge](https://img.shields.io/badge/OzoNe-T__T-blue.svg)
+![forthebadge](https://forthebadge.com/images/badges/not-an-issue.svg)]
 # Лабораторная работа №3
 
 ### Задание
