@@ -13,71 +13,52 @@ set(
 
 include("tools/gate/cmake/HunterGate.cmake")
 
-HunterGate(
-        URL "https://github.com/ruslo/hunter/archive/v0.23.214.tar.gz"
-        SHA1 "e14bc153a7f16d6a5eeec845fb0283c8fad8c358"
+huntergate(
+        URL "https://github.com/ruslo/hunter/archive/v0.23.34.tar.gz"
+        SHA1 "70287b1ffa810ee4e952052a9adff9b4856d0d54"
 )
 
-project(SharedPtr)
+
+# TODO: rename project and delete this comment
+project(template)
 string(APPEND CMAKE_CXX_FLAGS " -pedantic -Werror -Wall -Wextra")
 string(APPEND CMAKE_CXX_FLAGS " -Wno-unused-command-line-argument")
 string(APPEND CMAKE_CXX_FLAGS " -Wshadow -Wnon-virtual-dtor")
 
 hunter_add_package(GTest)
 find_package(GTest CONFIG REQUIRED)
-find_package(Threads)
 
-add_library(
-        ${PROJECT_NAME}
-        STATIC
+
+# TODO: change template word to project name and delete this comment
+add_library(template STATIC
+        # enum your files and delete this comment
         ${CMAKE_CURRENT_SOURCE_DIR}/sources/source.cpp
-)
-
-add_executable(
-        tests
+        )
+add_executable(tests
+        # TODO: enum your files and delete this comment
         ${CMAKE_CURRENT_SOURCE_DIR}/tests/test.cpp
-)
+        )
 
-target_include_directories(
-        ${PROJECT_NAME}
-        PUBLIC
-        ${CMAKE_CURRENT_SOURCE_DIR}/include
-)
-
-target_include_directories(
-        tests
-        PUBLIC
-        ${CMAKE_CURRENT_SOURCE_DIR}/include
-        ${GTEST_ROOT}/include
-)
-
-find_library(
-        GTEST_LOCAL_LIB
-        NAMES gtest
-        PATHS ${PROJECT_NAME}/lib64/
-)
-find_library(
-        GTEST_LOCAL_LIB_MAIN
-        NAMES gtest_main
-        PATHS ${PROJECT_NAME}/lib64/
-)
-target_link_libraries(
-        tests
-        ${CMAKE_THREAD_LIBS_INIT}
-        ${GTEST_LOCAL_LIB}
-        ${GTEST_LOCAL_LIB_MAIN}
-        ${PROJECT_NAME}
-)
+# TODO: change template word to project name and delete this comment
+target_include_directories(template
+        PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}/include
+        )
+target_include_directories(tests
+        PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}/sources
+        )
+# TODO: change template word to project name and delete this comment
+target_link_libraries(tests GTest::main template)
 
 enable_testing()
 add_test(NAME unit_tests COMMAND tests)
 
-if (BUILD_COVERAGE)
+if(BUILD_COVERAGE)
   set(ENABLE_COVERAGE ON CACHE BOOL "Enable coverage build." FORCE)
   list(APPEND CMAKE_MODULE_PATH "${CMAKE_CURRENT_SOURCE_DIR}/cmake")
   find_package(codecov)
-  add_coverage(${PROJECT_NAME})
+  # TODO: change template word to project name and delete this comment
+  add_coverage(template)
   add_coverage(tests)
   list(APPEND LCOV_REMOVE_PATTERNS "'${PROJECT_SOURCE_DIR}/tests/*'")
   coverage_evaluate()
-endif ()
+endif()
